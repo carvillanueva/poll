@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'home-page',
   template: `
     <div class="container">
-      <h1>HOME PAGE</h1>
+      <h1>HOME PAGE </h1>
 
     </div>
 
