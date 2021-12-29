@@ -2,8 +2,14 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<h1>{{title}}</h1>`,
-  styles: [``]
+  template: `
+    <div class="content-container">
+      <div class="content-area">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  `,
+  styles: [``],
 })
 export class AppComponent {
   title = 'Poll App';

@@ -3,21 +3,234 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'home-page',
   template: `
-    <div class="container">
-      <h1>HOME PAGE</h1>
+    <div class="container py-3">
+      <header>
+        <div
+          class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+          <a
+            href="/"
+            class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">{{'Arlington Family Offices'}}</span>
+          </a>
 
+          <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/">Home</a>
+            <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/eventsPage">Create an E-vite</a>
+            <a class="me-3 py-2 text-dark text-decoration-none" [routerLink]="['/']">Create a Poll</a>
+            <a class="py-2 text-dark text-decoration-none" routerLink="/loginPage">Login</a>
+          </nav>
+        </div>
+
+        <div class="bio-header p-3 pb-md-4 mx-auto text-center">
+          <h1 class="display-4 fw-normal">Create an Event / Poll!</h1>
+          <p class="fs-5 text-muted">
+            Quickly build an effective eleetronic invitation or poll for your next company event.
+            It's as easy as pie.
+          </p>
+        </div>
+      </header>
+
+      <main>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Free</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  Start today!
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Full access to E-vite maker</li>
+                  <li>Full access to Poll maker</li>
+                  <li>Email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <button
+                  type="button"
+                  class="w-100 btn btn-lg btn-outline-primary"
+                >
+                  Sign up for free
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Create an E-vite</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  E-vite Maker
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Design your own E-vite</li>
+                  <li>Easy to use!</li>
+                  <li>Send to friends, family, & co-workers!</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary">
+                  Get started
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Create a Poll</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  Poll Maker
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                <li>Design your own Poll</li>
+                  <li>Easy to use!</li>
+                  <li>Send to friends, family, & co-workers!</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary">
+                  Get started
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="display-6 text-center mb-4">Previous Work Examples</h2>
+
+        <div class="table-responsive">
+          <table class="table text-center">
+            <thead>
+              <tr>
+                <th style="width: 34%;"></th>
+                <th style="width: 22%;">Free</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" class="text-start">Public</th>
+                <td>
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#check" />
+                  </svg>
+                </td>
+                <td>
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#check" />
+                  </svg>
+                </td>
+                <td>
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#check" />
+                  </svg>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-start">Private</th>
+                <td></td>
+                <td>
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#check" />
+                  </svg>
+                </td>
+                <td>
+                  <svg class="bi" width="24" height="24">
+                    <use xlink:href="#check" />
+                  </svg>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img
+              class="mb-2"
+              src="../assets/brand/bootstrap-logo.svg"
+              alt=""
+              width="24"
+              height="19"
+            />
+            <small class="d-block mb-3 text-muted">&copy; 2017–2021</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Cool stuff</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Random feature</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Team feature</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Stuff for developers</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#"
+                  >Another one</a
+                >
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Last time</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Resource</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Resource name</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Another resource</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Final resource</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Team</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Locations</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Privacy</a>
+              </li>
+              <li class="mb-1">
+                <a class="link-secondary text-decoration-none" href="#">Terms</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
-
   `,
   styles: [`
-
-  `]
+  .bio-header {
+    max-width: 700px;
+  }
+  `],
 })
 export class HomeComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
+  public createEvent() {}
 }
