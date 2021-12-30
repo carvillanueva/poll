@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
           Quickly build an effective eleetronic invitation or poll for your next company event.
           It's as easy as pie.
         </p>
-      </div>
+      </div> 
 
       <main>
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
