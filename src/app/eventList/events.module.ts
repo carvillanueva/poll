@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventListComponent } from './events.component';
+import { EviteComponent } from './evite.component';
+import { PollsComponent } from './polls.component';
 
 
 
 @NgModule({
   declarations: [
-    EventListComponent,
+    EviteComponent,
+    PollsComponent,
   ],
   imports: [
     CommonModule,
   ],
   exports: [
-    EventListComponent
+    EviteComponent,
+    PollsComponent
   ]
 })
 export class EventsPageModule { }

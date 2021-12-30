@@ -4,31 +4,13 @@ import { Component, OnInit } from '@angular/core';
   selector: 'home-page',
   template: `
     <div class="container py-3">
-      <header>
-        <div
-          class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-          <a
-            href="/"
-            class="d-flex align-items-center text-dark text-decoration-none">
-            <span class="fs-4">{{'Arlington Family Offices'}}</span>
-          </a>
-
-          <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/">Home</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/eventsPage">Create an E-vite</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" [routerLink]="['/']">Create a Poll</a>
-            <a class="py-2 text-dark text-decoration-none" routerLink="/loginPage">Login</a>
-          </nav>
-        </div>
-
-        <div class="bio-header p-3 pb-md-4 mx-auto text-center">
-          <h1 class="display-4 fw-normal">Create an Event / Poll!</h1>
-          <p class="fs-5 text-muted">
-            Quickly build an effective eleetronic invitation or poll for your next company event.
-            It's as easy as pie.
-          </p>
-        </div>
-      </header>
+      <div class="bio-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">Create an Event / Poll!</h1>
+        <p class="fs-5 text-muted">
+          Quickly build an effective eleetronic invitation or poll for your next company event.
+          It's as easy as pie.
+        </p>
+      </div>
 
       <main>
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -45,13 +27,9 @@ import { Component, OnInit } from '@angular/core';
                   <li>Full access to E-vite maker</li>
                   <li>Full access to Poll maker</li>
                   <li>Email support</li>
-                  <li>Help center access</li>
                 </ul>
-                <button
-                  type="button"
-                  class="w-100 btn btn-lg btn-outline-primary"
-                >
-                  Sign up for free
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">
+                  <a class="py-2 text-dark text-decoration-none" routerLink="/loginPage">Sign up for free</a>
                 </button>
               </div>
             </div>
@@ -71,7 +49,7 @@ import { Component, OnInit } from '@angular/core';
                   <li>Send to friends, family, & co-workers!</li>
                 </ul>
                 <button type="button" class="w-100 btn btn-lg btn-primary">
-                  Get started
+                  <a class="py-2 text-light text-decoration-none" routerLink="/evitesPage">Get started</a>
                 </button>
               </div>
             </div>
@@ -91,7 +69,7 @@ import { Component, OnInit } from '@angular/core';
                   <li>Send to friends, family, & co-workers!</li>
                 </ul>
                 <button type="button" class="w-100 btn btn-lg btn-primary">
-                  Get started
+                  <a class="py-2 text-light text-decoration-none" routerLink="/pollsPage">Get started</a>
                 </button>
               </div>
             </div>
