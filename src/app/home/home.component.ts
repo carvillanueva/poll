@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'home-page',
@@ -77,7 +79,6 @@ import { Component, OnInit } from '@angular/core';
         </div>
 
         <h2 class="display-6 text-center mb-4">Previous Work Examples</h2>
-
         <div class="table-responsive">
           <table class="table text-center">
             <thead>
@@ -132,8 +133,7 @@ import { Component, OnInit } from '@angular/core';
               src="../assets/brand/bootstrap-logo.svg"
               alt=""
               width="24"
-              height="19"
-            />
+              height="19"/>
             <small class="d-block mb-3 text-muted">&copy; 2017–2021</small>
           </div>
           <div class="col-6 col-md">
@@ -146,17 +146,6 @@ import { Component, OnInit } from '@angular/core';
                 <a class="link-secondary text-decoration-none" href="#">Random feature</a>
               </li>
               <li class="mb-1">
-                <a class="link-secondary text-decoration-none" href="#">Team feature</a>
-              </li>
-              <li class="mb-1">
-                <a class="link-secondary text-decoration-none" href="#">Stuff for developers</a>
-              </li>
-              <li class="mb-1">
-                <a class="link-secondary text-decoration-none" href="#"
-                  >Another one</a
-                >
-              </li>
-              <li class="mb-1">
                 <a class="link-secondary text-decoration-none" href="#">Last time</a>
               </li>
             </ul>
@@ -166,9 +155,6 @@ import { Component, OnInit } from '@angular/core';
             <ul class="list-unstyled text-small">
               <li class="mb-1">
                 <a class="link-secondary text-decoration-none" href="#">Resource</a>
-              </li>
-              <li class="mb-1">
-                <a class="link-secondary text-decoration-none" href="#">Resource name</a>
               </li>
               <li class="mb-1">
                 <a class="link-secondary text-decoration-none" href="#">Another resource</a>
@@ -185,9 +171,6 @@ import { Component, OnInit } from '@angular/core';
                 <a class="link-secondary text-decoration-none" href="#">Team</a>
               </li>
               <li class="mb-1">
-                <a class="link-secondary text-decoration-none" href="#">Locations</a>
-              </li>
-              <li class="mb-1">
                 <a class="link-secondary text-decoration-none" href="#">Privacy</a>
               </li>
               <li class="mb-1">
@@ -200,15 +183,22 @@ import { Component, OnInit } from '@angular/core';
     </div>
   `,
   styles: [`
-  .bio-header {
-    max-width: 700px;
-  }
+    .bio-header {
+      max-width: 700px;
+    }
   `],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+  
+  constructor(
+    private authHttp: HttpClient
+  ) {}
+
+  ngOnInit() {
+    this.authHttp.get(environment.apiPath + 'customer').subscribe(); //remove subscribe when adding to service
+
+  }
 
   public createEvent() {}
 }

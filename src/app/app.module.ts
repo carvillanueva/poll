@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { EventsPageModule } from './eventList/events.module';
@@ -21,6 +23,7 @@ import { PollsComponent } from './eventList/polls.component';
     BrowserModule,
     LoginPageModule,
     EventsPageModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'loginPage', component: LoginPageComponent },

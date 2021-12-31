@@ -14,12 +14,27 @@ import { Component, OnInit } from '@angular/core';
     <div class="bg-light">
       <ul class="nav justify-content-end">
         <li class="nav-item">
+          <a class="nav-link" href="">Responses</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="">Preview</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">Share</a>
         </li>
       </ul>
+    </div>
+
+    <div class="col-sm-8 offset-sm-2 bg-light" style="margin-top:15px;">
+      <div>
+        Question
+      </div>
+      <div>
+        Answer Section
+      </div>
+      <div>
+        Question Specs
+      </div>
     </div>
 
     <div style="margin-top:15px;">
@@ -40,11 +55,7 @@ import { Component, OnInit } from '@angular/core';
               <li><a class="dropdown-item" >Rating</a></li>
             </ul>
           </div>
-          <div>
-           test
-          </div>
         </div>
-
       </div>
     </div>
 

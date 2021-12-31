@@ -4,6 +4,69 @@ import { Component, OnInit } from '@angular/core';
   selector: 'evite-page',
   styles: [
     `
+      /* Form Input */
+      .form-style-2 {
+        padding: 20px 12px 10px 20px;
+        font: 13px Arial, Helvetica, sans-serif;
+      }
+      .form-style-2 label {
+        display: block;
+        margin: 0px 0px 15px 0px;
+      }
+      .form-style-2 label > span {
+        width: 100px;
+        font-weight: bold;
+        float: left;
+        padding-top: 8px;
+        padding-right: 5px;
+      }
+      .form-style-2 input.input-field {
+        width: 48%;
+      }
+      .form-style-2 input.input-field,
+      .form-style-2 .textarea-field {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        border: 1px solid #c2c2c2;
+        box-shadow: 1px 1px 4px #ebebeb;
+        -moz-box-shadow: 1px 1px 4px #ebebeb;
+        -webkit-box-shadow: 1px 1px 4px #ebebeb;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        padding: 7px;
+        outline: none;
+      }
+      .form-style-2 .input-field:focus,
+      .form-style-2 .textarea-field:focus {
+        border: 1px solid #0c0;
+      }
+      .form-style-2 .textarea-field {
+        height: 100px;
+        width: 55%;
+      }
+      .form-style-2 input[type='submit'],
+      .form-style-2 input[type='button'] {
+        border: none;
+        padding: 8px 15px 8px 15px;
+        background: #ff8500;
+        color: #fff;
+        box-shadow: 1px 1px 4px #dadada;
+        -moz-box-shadow: 1px 1px 4px #dadada;
+        -webkit-box-shadow: 1px 1px 4px #dadada;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+      }
+      .form-style-2 input[type='submit']:hover,
+      .form-style-2 input[type='button']:hover {
+        background: #ea7b00;
+        color: #fff;
+      }
+
+
+        /* Card Preview */
       .subtitle {
         font-style: italic;
         font-weight: 400;
@@ -14,7 +77,6 @@ import { Component, OnInit } from '@angular/core';
 
       .card {
         border: 7px solid #454545;
-        /* width:1100px; */
         margin: 25px;
         display: inline-block;
       }
@@ -141,135 +203,150 @@ import { Component, OnInit } from '@angular/core';
       .invite-switch {
         font-size: 17px;
         display: inline-block;
-        width: 50%;
+        width: 25%;
         text-align: center;
-        background: rgba(255,255,255,.5);
+        background: rgba(255, 255, 255, 0.5);
       }
-      
     `,
   ],
   template: `
+    <div class="container col-8">
+      <button class="invite-switch" (click)="switchView('true')">Invitation</button>
+      <button class="invite-switch" (click)="switchView('false')">Preview</button>
+      <button class="invite-switch">share</button>
+      <button class="invite-switch">Responses</button>
+    </div>
+
+    <div *ngIf="inviteEdit" class="container offset-sm-3 form-style-2">
+      <form action="" >
+        <label for="field1">
+          <span>Event Name <span style="color:red;">*</span></span>
+          <input type="text" class="input-field" name="field1" value=""/>
+        </label>
+        <label for="field2">
+          <span>Occasion</span>
+          <input type="text" class="input-field" name="field2" value=""/>
+        </label>
+        <label for="field3">
+          <span>Host <span style="color:red;">*</span></span>
+          <input type="text" class="input-field" name="field3" value=""/>
+        </label>
+        <label for="field4">
+          <span>Date & Time <span style="color:red;">*</span></span>
+          <input type="datetime-local" class="input-field" name="field4" value=""/>
+        </label>
+        <label for="field5">
+          <span>Address <span style="color:red;">*</span></span>
+          <input type="text" class="input-field" name="field5" value=""/>
+        </label>
+        <label for="field6">
+          <span>Message <span style="color:red;">*</span></span>
+          <textarea name="field6" class="textarea-field"></textarea>
+        </label>
+
+        <label><span> </span><input type="submit" /></label>
+      </form>
+    </div>
+
     <div class="container">
-      <button class="invite-switch" (click)="switchView('true')">
-        Invitation
-      </button>
-      <button class="invite-switch" (click)="switchView('false')">
-        Preview
-      </button>
-    </div>
+      <div *ngIf="!inviteEdit" class="card">
+        <section class="col-8 float-start">
+          <header class="heading">
+            <div class="super-heading">Join us for this cool event!</div>
+            <h1 class="title">Invitation</h1>
+          </header>
 
-    <div *ngIf="inviteEdit" class="row col-sm-8 offset-sm-2 bg-light">
-      <label>Event Title<span style="color:red">*</span></label>
-      <input type="text" placeholder="Event Name..." />
-      <br />
+          <address class="party-address">
+            <p>
+              <i class="fas fa-map-marker-alt"></i> 20<sup>th</sup> St N Ste
+              2000, Birmingham, AL
+            </p>
+            <p><i class="fad fa-phone"></i> (205) 671-8235</p>
+            <p><i class="fad fa-clock"></i> 7:00 P.M CST</p>
+          </address>
 
-      <label>Event Type</label>
-      <input type="text" placeholder="Event Type..." />
-      <br />
+          <time class="party-date">
+            <div class="party-day">18<sup>th</sup></div>
+            <div class="party-month">august</div>
+          </time>
+        </section>
+        <!-- column left -->
 
-      <label>Host</label>
-      <input type="text" placeholder="Host..." />
-      <br />
-
-      <label>Phone</label>
-      <input type="tel" placeholder="Event Type..." />
-      <br />
-
-      <label>Start Time</label>
-      <input type="datetime-local" />
-      <br />
-
-      <label>Description:<span style="color:red">*</span></label>
-      <textarea placeholder=""></textarea>
-    </div>
-
-    <div *ngIf="!inviteEdit" class="card">
-      <section class="col-8 float-start" >
-        <header class="heading">
-          <div class="super-heading">Join us for this cool event!</div>
-          <h1 class="title">Invitation</h1>
-        </header>
-
-        <address class="party-address">
-          <p><i class="fas fa-map-marker-alt"></i> 20<sup>th</sup> St N Ste 2000, Birmingham, AL</p>
-          <p><i class="fad fa-phone"></i> (205) 671-8235</p>
-          <p><i class="fad fa-clock"></i> 7:00 P.M CST</p>
-        </address>
-
-        <time class="party-date">
-          <div class="party-day">18<sup>th</sup></div>
-          <div class="party-month">august</div>
-        </time>
-      </section>
-      <!-- column left -->
-
-      <section class="col-4 float-end" style="border-left: solid 2px #454545">
-        <form id="theForm">
-          <h2>Are you coming?</h2>
-          <input
-            type="radio"
-            name="coming"
-            value="yes"
-            id="comingYes"
-            class="radio-coming--yes"
-            checked/>
-          <label for="comingYes" class="label-coming--yes">Yes, of course!</label>
-          <input
-            type="radio"
-            name="coming"
-            value="no"
-            id="comingNo"
-            class="radio-coming--no"/>
-          <label for="comingNo" class="label-coming--no">No, I'm sorry...</label>
-
-          <fieldset class="bringing">
-            <h3>Do you bring other people?</h3>
+        <section class="col-4 float-end" style="border-left: solid 2px #454545">
+          <form id="theForm">
+            <h2>Are you coming?</h2>
             <input
               type="radio"
-              name="bringing"
-              id="bringingYes"
+              name="coming"
               value="yes"
-              class="radio-bringing--yes"
-              checked/>
-            <label for="bringingYes" class="label-bringing--yes">Yes!</label>
-            <div class="is_bringing" id="bringing">
-              <h4>Oh, cool! Who else is coming??</h4>
-              <p class="subtitle">Bring as many as you like</p>
-              <input
-                type="text"
-                name="persons"
-                id="persons"
-                placeholder="Arlington Employee, Spouce, etc."/>
-            </div>
+              id="comingYes"
+              class="radio-coming--yes"
+              checked
+            />
+            <label for="comingYes" class="label-coming--yes"
+              >Yes, of course!</label
+            >
             <input
               type="radio"
-              name="bringing"
+              name="coming"
               value="no"
-              id="bringingNo"
-              class="radio-bringing--no"
+              id="comingNo"
+              class="radio-coming--no"
             />
-            <label for="bringingNo" class="label-bringing--no"
-              >No, I'm the lone ranger</label
+            <label for="comingNo" class="label-coming--no"
+              >No, I'm sorry...</label
             >
-          </fieldset>
 
-          <button class="send-card-button" id="theButton">Alrighty!</button>
-          <div id="thankyou" class="thank-you"></div>
-        </form>
-      </section>
-      <!-- column right -->
+            <fieldset class="bringing">
+              <h3>Do you bring other people?</h3>
+              <input
+                type="radio"
+                name="bringing"
+                id="bringingYes"
+                value="yes"
+                class="radio-bringing--yes"
+                checked
+              />
+              <label for="bringingYes" class="label-bringing--yes">Yes!</label>
+              <div class="is_bringing" id="bringing">
+                <h4>Oh, cool! Who else is coming??</h4>
+                <p class="subtitle">Bring as many as you like</p>
+                <input
+                  type="text"
+                  name="persons"
+                  id="persons"
+                  placeholder="Arlington Employee, Spouce, etc."
+                />
+              </div>
+              <input
+                type="radio"
+                name="bringing"
+                value="no"
+                id="bringingNo"
+                class="radio-bringing--no"
+              />
+              <label for="bringingNo" class="label-bringing--no"
+                >No, I'm the lone ranger</label
+              >
+            </fieldset>
+
+            <button class="send-card-button" id="theButton">Alrighty!</button>
+            <div id="thankyou" class="thank-you"></div>
+          </form>
+        </section>
+        <!-- column right -->
+      </div>
     </div>
+
     <!-- card -->
   `,
 })
 export class EviteComponent implements OnInit {
-
-  public inviteEdit:boolean = true;
+  public inviteEdit: boolean = true;
 
   constructor() {}
 
   ngOnInit(): void {}
-
 
   public switchView(view: any) {
     if (view === 'true') {
@@ -277,6 +354,5 @@ export class EviteComponent implements OnInit {
     } else {
       this.inviteEdit = false;
     }
-
   }
 }

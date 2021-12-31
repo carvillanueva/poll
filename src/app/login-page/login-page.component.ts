@@ -38,7 +38,7 @@ import { Component, OnInit } from '@angular/core';
             <div class="modal-header p-5 pb-4 border-bottom-0">
                 <!-- <h5 class="modal-title">Create an Awesome E-vite/Poll</h5> -->
                 <h2 class="fw-bold mb-0">Sign up / Sign in</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"><a routerLink="/"></a></button>
             </div>
 
             <div class="modal-body p-5 pt-0">
