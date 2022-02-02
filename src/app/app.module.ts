@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { EviteComponent } from './eventList/evite.component';
 import { PollsComponent } from './eventList/polls.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,13 @@ import { PollsComponent } from './eventList/polls.component';
     LoginPageModule,
     EventsPageModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'loginPage', component: LoginPageComponent },
       { path: 'evitesPage', component: EviteComponent },
       { path: 'pollsPage', component: PollsComponent },
-  ])
+  ]),
   ],
   exports: [
     HomeComponent 

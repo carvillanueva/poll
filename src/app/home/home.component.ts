@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { ApiPathService } from '../pollData.service';
 
 @Component({
   selector: 'home-page',
@@ -192,11 +191,16 @@ export class HomeComponent implements OnInit {
 
   
   constructor(
-    private authHttp: HttpClient
+    private apiRequest : ApiPathService,
   ) {}
 
-  ngOnInit() {
-    this.authHttp.get(environment.apiPath + 'customer').subscribe(); //remove subscribe when adding to service
+  ngOnInit() {  
+    this.apiRequest.getData('customer').subscribe();
+
+    this.apiRequest.getData('event').subscribe();
+
+    // this.authHttp.get(environment.apiPath + 'customer').subscribe(); //remove subscribe when adding to service
+
 
   }
 

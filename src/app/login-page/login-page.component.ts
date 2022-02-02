@@ -1,4 +1,6 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { ApiPathService } from '../pollData.service';
 
 @Component({
   selector: 'login-page',
@@ -32,11 +34,10 @@ import { Component, OnInit } from '@angular/core';
   
   `],
   template: `
-    <div class="modal modal-signin position-static d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal modal-signin d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-5 shadow">
             <div class="modal-header p-5 pb-4 border-bottom-0">
-                <!-- <h5 class="modal-title">Create an Awesome E-vite/Poll</h5> -->
                 <h2 class="fw-bold mb-0">Sign up / Sign in</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"><a routerLink="/"></a></button>
             </div>
@@ -44,14 +45,14 @@ import { Component, OnInit } from '@angular/core';
             <div class="modal-body p-5 pt-0">
                 <form class="">
                 <div class="form-floating mb-3">
-                    <label for="floatingInput">Email address</label>
-                    <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
+                    <label>Email address</label>
+                    <input type="text" class="form-control rounded-4">
                 </div>
                 <div class="form-floating mb-3">
-                    <label for="floatingPassword">Password</label>
-                    <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
+                    <label>Password</label>
+                    <input type="text" class="form-control rounded-4" >
                 </div>
-                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign up / Sign in</button>
+                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary">Sign up / Sign in</button>
                 <hr class="my-4">
                 <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
                 <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
@@ -67,13 +68,40 @@ import { Component, OnInit } from '@angular/core';
             </div>
         </div>
     </div>
+
+
+    
+    <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal"></button>
+
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"> 
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title" ></h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>MODAL BODY</p>
+                    <label for="modal-email" class="for-label">Your Email Address:</label>
+                    <input type="email" class="form-control" id="modal-email" placeholder="e.g. cvillanueva@myafo.com">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
   `
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private apiRequest: ApiPathService,
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+      this.apiRequest.getData('customer').subscribe();
   }
 
 

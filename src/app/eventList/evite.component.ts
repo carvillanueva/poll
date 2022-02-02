@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiPathService } from '../pollData.service';
 
 @Component({
   selector: 'evite-page',
@@ -46,8 +47,7 @@ import { Component, OnInit } from '@angular/core';
         height: 100px;
         width: 55%;
       }
-      .form-style-2 input[type='submit'],
-      .form-style-2 input[type='button'] {
+      .submit-evite {
         border: none;
         padding: 8px 15px 8px 15px;
         background: #ff8500;
@@ -59,8 +59,7 @@ import { Component, OnInit } from '@angular/core';
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
       }
-      .form-style-2 input[type='submit']:hover,
-      .form-style-2 input[type='button']:hover {
+      .submit-evite:hover {
         background: #ea7b00;
         color: #fff;
       }
@@ -216,36 +215,33 @@ import { Component, OnInit } from '@angular/core';
       <button class="invite-switch">share</button>
       <button class="invite-switch">Responses</button>
     </div>
-
+  <!-- <button class="btn btn-primary" (click)="submitInvite()">Submit</button> -->
     <div *ngIf="inviteEdit" class="container offset-sm-3 form-style-2">
-      <form action="" >
-        <label for="field1">
+        <label>
           <span>Event Name <span style="color:red;">*</span></span>
-          <input type="text" class="input-field" name="field1" value=""/>
+          <input type="text" class="input-field" (ngModel)="data[0].eventName">
         </label>
-        <label for="field2">
+        <label>
           <span>Occasion</span>
-          <input type="text" class="input-field" name="field2" value=""/>
+          <input type="text" class="input-field" />
         </label>
-        <label for="field3">
+        <label>
           <span>Host <span style="color:red;">*</span></span>
-          <input type="text" class="input-field" name="field3" value=""/>
+          <input type="text" class="input-field" (ngModel)="data.eventHost" />
         </label>
-        <label for="field4">
+        <label>
           <span>Date & Time <span style="color:red;">*</span></span>
-          <input type="datetime-local" class="input-field" name="field4" value=""/>
+          <input type="datetime-local" class="input-field"/>
         </label>
-        <label for="field5">
+        <label>
           <span>Address <span style="color:red;">*</span></span>
-          <input type="text" class="input-field" name="field5" value=""/>
+          <input type="text" class="input-field" (ngModel)="data.address"/>
         </label>
-        <label for="field6">
+        <label>
           <span>Message <span style="color:red;">*</span></span>
-          <textarea name="field6" class="textarea-field"></textarea>
+          <textarea class="textarea-field" (ngModel)="data.description"></textarea>
         </label>
-
-        <label><span> </span><input type="submit" /></label>
-      </form>
+        <button class="submit-evite" (click)="submitInvite()">Submit</button>
     </div>
 
     <div class="container">
@@ -261,8 +257,12 @@ import { Component, OnInit } from '@angular/core';
               <i class="fas fa-map-marker-alt"></i> 20<sup>th</sup> St N Ste
               2000, Birmingham, AL
             </p>
-            <p><i class="fad fa-phone"></i> (205) 671-8235</p>
-            <p><i class="fad fa-clock"></i> 7:00 P.M CST</p>
+            <p>
+              <i class="fad fa-phone"></i> (205) 671-8235
+            </p>
+            <p>
+              <i class="fad fa-clock"></i> 7:00 P.M CST
+            </p>
           </address>
 
           <time class="party-date">
@@ -283,9 +283,7 @@ import { Component, OnInit } from '@angular/core';
               class="radio-coming--yes"
               checked
             />
-            <label for="comingYes" class="label-coming--yes"
-              >Yes, of course!</label
-            >
+            <label for="comingYes" class="label-coming--yes">Yes, of course!</label>
             <input
               type="radio"
               name="coming"
@@ -293,9 +291,7 @@ import { Component, OnInit } from '@angular/core';
               id="comingNo"
               class="radio-coming--no"
             />
-            <label for="comingNo" class="label-coming--no"
-              >No, I'm sorry...</label
-            >
+            <label for="comingNo" class="label-coming--no">No, I'm sorry...</label>
 
             <fieldset class="bringing">
               <h3>Do you bring other people?</h3>
@@ -342,11 +338,24 @@ import { Component, OnInit } from '@angular/core';
   `,
 })
 export class EviteComponent implements OnInit {
+  public data: any;
   public inviteEdit: boolean = true;
 
-  constructor() {}
+  constructor(
+    private apiRequest: ApiPathService,
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit( ) {
+   this.loadData();
+  }
+
+  public loadData() {
+    this.apiRequest.getData('event').subscribe((res: any) => {
+      console.log(res);
+      this.data = res;
+    });
+
+  }
 
   public switchView(view: any) {
     if (view === 'true') {
@@ -355,4 +364,17 @@ export class EviteComponent implements OnInit {
       this.inviteEdit = false;
     }
   }
+
+  public submitInvite() {
+    console.log('ete');
+    
+    this.apiRequest.postData('event' , this.data ).subscribe((res: any) => {
+      console.log(res);
+    });
+  
+    ///this.data[0]== needs to be the object that is passed in to update not the whole array
+  
+  }
+
+
 }
