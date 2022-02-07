@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginPageComponent } from '../login-page/login-page.component';
 import { ApiPathService } from '../pollData.service';
 
 @Component({
@@ -30,7 +32,7 @@ import { ApiPathService } from '../pollData.service';
                   <li>Email support</li>
                 </ul>
                 <button type="button" class="w-100 btn btn-lg btn-outline-primary">
-                  <a class="py-2 text-dark text-decoration-none" routerLink="/loginPage">Sign up for free</a>
+                  <a class="py-2 text-dark text-decoration-none" (click)="loginModal()">Sign up for free</a>
                 </button>
               </div>
             </div>
@@ -187,22 +189,35 @@ import { ApiPathService } from '../pollData.service';
     }
   `],
 })
+
 export class HomeComponent implements OnInit {
 
   
   constructor(
     private apiRequest : ApiPathService,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit() {  
-    this.apiRequest.getData('customer').subscribe();
-
-    this.apiRequest.getData('event').subscribe();
-
+    console.log('home page test');
+    this.apiRequest.getData('customer').subscribe((res:any) => {
+      console.log(res);
+    });
+    this.apiRequest.getData('event').subscribe((res:any) => {
+      console.log(res);
+    });
+    // this.apiRequest.getData('customer/newCustomer/' + 'Carlos').subscribe((res:any) => {
+    //   console.log(res);
+    // });
+    // this.apiRequest.getData('customer/' + 'fa0ad996-b458-43cb-a217-83d8e476a565').subscribe((res:any) => {
+    //   console.log(res);
+    // });
     // this.authHttp.get(environment.apiPath + 'customer').subscribe(); //remove subscribe when adding to service
-
-
+   
   }
 
-  public createEvent() {}
+  public loginModal() {
+    this.modalService.open(LoginPageComponent);
+  }
+
 }

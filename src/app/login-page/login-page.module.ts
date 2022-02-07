@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +13,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
   ],
   imports: [
     CommonModule,
+    FormsModule
   ],
   exports: [
     LoginPageComponent

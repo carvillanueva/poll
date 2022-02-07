@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginPageComponent } from '../login-page/login-page.component';
 
 @Component({
   selector: 'page-header',
@@ -13,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
           <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/">Home</a>
           <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/evitesPage">Create an E-vite</a>
           <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/pollsPage">Create a Poll</a>
-          <a class="py-2 text-dark text-decoration-none" routerLink="/loginPage">Login</a>
+          <button class="btn btn-primary" (click)="loginModal()">Login</button>
         </nav>
       </div>
     </header>
@@ -24,9 +26,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+
+
+
+  constructor(
+    private modalService: NgbModal,
+  ) { }
+
+  ngOnInit() {
+
+  }
+
+
+  public loginModal() {
+    this.modalService.open(LoginPageComponent);
   }
 
 }
