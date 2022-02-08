@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPathService } from '../pollData.service';
+import { DateTime } from 'luxon';
+
 
 @Component({
   selector: 'evite-page',
@@ -73,13 +75,11 @@ import { ApiPathService } from '../pollData.service';
         color: #898989;
         margin: 0 0 0.25em;
       }
-
       .card {
         border: 7px solid #454545;
         margin: 25px;
         display: inline-block;
       }
-
       .heading {
         font-weight: 700;
       }
@@ -198,81 +198,104 @@ import { ApiPathService } from '../pollData.service';
         text-align: center;
         margin: 1.5em 0 0 0;
       }
-
       .invite-switch {
         font-size: 17px;
-        display: inline-block;
-        width: 25%;
+        /* display: inline-block; */
+        /* width: 25%; */
         text-align: center;
         background: rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
       }
+      .invite-switch:hover {
+        background:grey;
+        color:white;
+      }
+
+      .input-container {
+        background-color: rgba(0,0,0,.03);
+        border-radius: 15px;
+      }
+
     `,
   ],
   template: `
-    <div class="container col-8">
-      <button class="invite-switch" (click)="switchView('true')">Invitation</button>
-      <button class="invite-switch" (click)="switchView('false')">Preview</button>
-      <button class="invite-switch">share</button>
-      <button class="invite-switch">Responses</button>
-    </div>
-  <!-- <button class="btn btn-primary" (click)="submitInvite()">Submit</button> -->
-    <div *ngIf="inviteEdit" class="container offset-sm-3 form-style-2">
-        <label>
-          <span>Event Name <span style="color:red;">*</span></span>
-          <input type="text" class="input-field" (ngModel)="data[0].eventName">
-        </label>
-        <label>
-          <span>Occasion</span>
-          <input type="text" class="input-field" />
-        </label>
-        <label>
-          <span>Host <span style="color:red;">*</span></span>
-          <input type="text" class="input-field" (ngModel)="data.eventHost" />
-        </label>
-        <label>
-          <span>Date & Time <span style="color:red;">*</span></span>
-          <input type="datetime-local" class="input-field"/>
-        </label>
-        <label>
-          <span>Address <span style="color:red;">*</span></span>
-          <input type="text" class="input-field" (ngModel)="data.address"/>
-        </label>
-        <label>
-          <span>Message <span style="color:red;">*</span></span>
-          <textarea class="textarea-field" (ngModel)="data.description"></textarea>
-        </label>
-        <button class="submit-evite" (click)="submitInvite()">Submit</button>
+    <div class="container col-12 text-center ">
+        <button class="invite-switch" (click)="switchView('true')"><span class="fad fa-envelope"></span> Invitation</button>
+        <button class="invite-switch" (click)="switchView('false')"><span class="fad fa-eye"></span> Preview</button>
+        <button class="invite-switch"><span class="fad fa-share-square"></span> Share</button>
+        <button class="invite-switch "><span class="fad fa-user-chart"></span> Responses</button>
     </div>
 
-    <div class="container">
+    <div *ngIf="inviteEdit" class="container input-container form-style-2 text-center">
+      <label>
+        <span>Event Name <span style="color:red;">*</span></span>
+        <input type="text" class="input-field" [(ngModel)]="newEvent.eventName">
+      </label>
+      <label>
+        <span>Occasion</span>
+        <input type="text" class="input-field" [(ngModel)]="newEvent.eventOccasion"/>
+      </label>
+      <label>
+        <span>Host <span style="color:red;">*</span></span>
+        <input type="text" class="input-field" [(ngModel)]="newEvent.eventHost" />
+      </label>
+      <label>
+        <span>Date <span style="color:red;">*</span></span>
+        <input type="date" class="input-field" [(ngModel)]="newEvent.eventDate"/>
+      </label>
+      <label>
+        <span>Time <span style="color:red;">*</span></span>
+        <input type="time" class="input-field" [(ngModel)]="newEvent.eventTime"/>
+      </label>
+      <label>
+        <span>RSVP By <span style="color:red;">*</span></span>
+        <input type="date" class="input-field" [(ngModel)]="newEvent.rsvpBy"/>
+      </label>
+      <label>
+        <span>Address <span style="color:red;">*</span></span>
+        <input type="text" class="input-field" [(ngModel)]="newEvent.address"/>
+      </label>
+      <label>
+        <span>Message <span style="color:red;">*</span></span>
+        <textarea class="textarea-field" [(ngModel)]="newEvent.description"></textarea>
+      </label>
+      <button class="submit-evite" (click)="submitInvite()">Submit</button>
+    </div>
+
+    <div class="container text-center">
       <div *ngIf="!inviteEdit" class="card">
-        <section class="col-8 float-start">
+        <section class="col-8 float-start" style="border-right: solid 2px #454545">
           <header class="heading">
-            <div class="super-heading">Join us for this cool event!</div>
-            <h1 class="title">Invitation</h1>
+            <div class="super-heading">{{this.newEvent.eventOccasion}}</div>
+            <h1 class="title">{{this.newEvent.eventName}}</h1>
           </header>
 
           <address class="party-address">
             <p>
-              <i class="fas fa-map-marker-alt"></i> 20<sup>th</sup> St N Ste
-              2000, Birmingham, AL
+              <i class="fas fa-map-marker-alt"></i> {{this.newEvent.address}}
             </p>
-            <p>
+            <!-- <p>
               <i class="fad fa-phone"></i> (205) 671-8235
+            </p> -->
+            <p>
+              <i>RSVP BY: </i> {{this.newEvent.rsvpBy | date}}
             </p>
             <p>
-              <i class="fad fa-clock"></i> 7:00 P.M CST
+              <i class="fad fa-clock"></i> {{this.newEvent.eventTime}}
             </p>
+      
           </address>
-
           <time class="party-date">
-            <div class="party-day">18<sup>th</sup></div>
-            <div class="party-month">august</div>
+            <div class="party-month">{{this.newEvent.eventDate | date}}</div>
+            <!-- <div class="party-month">august</div> -->
           </time>
-        </section>
-        <!-- column left -->
+          <div class="col-4">
+            {{this.newEvent.description}}
+          </div>
 
-        <section class="col-4 float-end" style="border-left: solid 2px #454545">
+        </section>
+
+        <section class="col-4 float-end" >
           <form id="theForm">
             <h2>Are you coming?</h2>
             <input
@@ -281,16 +304,14 @@ import { ApiPathService } from '../pollData.service';
               value="yes"
               id="comingYes"
               class="radio-coming--yes"
-              checked
-            />
+              checked/>
             <label for="comingYes" class="label-coming--yes">Yes, of course!</label>
             <input
               type="radio"
               name="coming"
               value="no"
               id="comingNo"
-              class="radio-coming--no"
-            />
+              class="radio-coming--no"/>
             <label for="comingNo" class="label-coming--no">No, I'm sorry...</label>
 
             <fieldset class="bringing">
@@ -301,8 +322,7 @@ import { ApiPathService } from '../pollData.service';
                 id="bringingYes"
                 value="yes"
                 class="radio-bringing--yes"
-                checked
-              />
+                checked/>
               <label for="bringingYes" class="label-bringing--yes">Yes!</label>
               <div class="is_bringing" id="bringing">
                 <h4>Oh, cool! Who else is coming??</h4>
@@ -311,34 +331,27 @@ import { ApiPathService } from '../pollData.service';
                   type="text"
                   name="persons"
                   id="persons"
-                  placeholder="Arlington Employee, Spouce, etc."
-                />
+                  placeholder="Arlington Employee, Spouce, etc." />
               </div>
               <input
                 type="radio"
                 name="bringing"
                 value="no"
                 id="bringingNo"
-                class="radio-bringing--no"
-              />
-              <label for="bringingNo" class="label-bringing--no"
-                >No, I'm the lone ranger</label
-              >
+                class="radio-bringing--no"/>
+              <label for="bringingNo" class="label-bringing--no">No, I'm the lone ranger</label>
             </fieldset>
 
             <button class="send-card-button" id="theButton">Alrighty!</button>
             <div id="thankyou" class="thank-you"></div>
           </form>
         </section>
-        <!-- column right -->
       </div>
     </div>
-
-    <!-- card -->
   `,
 })
 export class EviteComponent implements OnInit {
-  public data: any;
+  public newEvent: newEventInfo = new newEventInfo();
   public inviteEdit: boolean = true;
 
   constructor(
@@ -347,14 +360,14 @@ export class EviteComponent implements OnInit {
 
   ngOnInit( ) {
    this.loadData();
+    console.log(this.newEvent.eventDate);
+    
   }
 
   public loadData() {
     this.apiRequest.getData('event').subscribe((res: any) => {
       console.log(res);
-      this.data = res;
     });
-
   }
 
   public switchView(view: any) {
@@ -366,15 +379,29 @@ export class EviteComponent implements OnInit {
   }
 
   public submitInvite() {
-    console.log('ete');
-    
-    this.apiRequest.postData('event' , this.data ).subscribe((res: any) => {
+    this.apiRequest.postData('event', this.newEvent).subscribe((res: any) => {
       console.log(res);
+      this.loadData();
     });
-  
-    ///this.data[0]== needs to be the object that is passed in to update not the whole array
-  
   }
 
+
+}
+
+
+export class newEventInfo {
+  id?: string;
+  type = 'event';
+  customerId?: string;
+  eventName?: string;
+  eventOccasion?: string;
+  eventHost?: string;
+  eventDate?: string;
+  eventTime?: string;
+  description?: string;
+  address?: string;
+
+  //UI only 
+  rsvpBy?: string;
 
 }

@@ -125,8 +125,6 @@ export class LoginPageComponent implements OnInit {
     }
 
 
-
-
 }
 
 export class newUserInfo {
