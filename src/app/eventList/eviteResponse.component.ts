@@ -21,7 +21,7 @@ export class EviteResponseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.apiRequest.getData('event/response').subscribe();
   }
 
 

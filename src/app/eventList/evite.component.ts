@@ -221,9 +221,9 @@ import { DateTime } from 'luxon';
   template: `
     <div class="container col-12 text-center ">
         <button class="invite-switch" (click)="switchView('true')"><span class="fad fa-envelope"></span> Invitation</button>
-        <button class="invite-switch" (click)="switchView('false')"><span class="fad fa-eye"></span> Preview</button>
-        <button class="invite-switch"><span class="fad fa-share-square"></span> Share</button>
-        <button class="invite-switch "><span class="fad fa-user-chart"></span> Responses</button>
+        <button class="invite-switch" (click)="switchView('false')"><span class="fad fa-eye"></span>  Preview</button>
+        <button class="invite-switch"><a href="/eviteShare"><i class="fad fa-share-square"></i></a> Share</button>
+        <button class="invite-switch"><a href="/eviteResponse"><i class="fad fa-user-chart"></i></a> Responses</button>
     </div>
 
     <div *ngIf="inviteEdit" class="container input-container form-style-2 text-center">
@@ -283,7 +283,6 @@ import { DateTime } from 'luxon';
             <p>
               <i class="fad fa-clock"></i> {{this.newEvent.eventTime}}
             </p>
-      
           </address>
           <time class="party-date">
             <div class="party-month">{{this.newEvent.eventDate | date}}</div>
@@ -360,7 +359,7 @@ export class EviteComponent implements OnInit {
 
   ngOnInit( ) {
    this.loadData();
-    console.log(this.newEvent.eventDate);
+    console.log(this.newEvent);
     
   }
 

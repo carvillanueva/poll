@@ -25,7 +25,6 @@ export class ApiPathService {
 
   public deleteData(url:string, data: any) {
     return this.authHttp.delete(this.pollApiPath + url, data);
-
   }
 
 

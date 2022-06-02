@@ -200,20 +200,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {  
     console.log('home page test');
-    this.apiRequest.getData('customer').subscribe((res:any) => {
+    this.apiRequest.getData('customer/').subscribe((res:any) => {
       console.log(res);
     });
-    this.apiRequest.getData('event').subscribe((res:any) => {
+    this.apiRequest.getData('event/').subscribe((res:any) => {
       console.log(res);
     });
-    // this.apiRequest.getData('customer/newCustomer/' + 'Carlos').subscribe((res:any) => {
-    //   console.log(res);
-    // });
+    this.apiRequest.getData('customer/newCustomer/' + 'Carlos').subscribe((res:any) => {
+      console.log(res);
+    });
     // this.apiRequest.getData('customer/' + 'fa0ad996-b458-43cb-a217-83d8e476a565').subscribe((res:any) => {
     //   console.log(res);
     // });
-    // this.authHttp.get(environment.apiPath + 'customer').subscribe(); //remove subscribe when adding to service
-   
   }
 
   public loginModal() {

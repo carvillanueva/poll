@@ -12,13 +12,11 @@ import { ApiPathService } from '../pollData.service';
         color: #898989;
         margin: 0 0 0.25em;
       }
-
       .card {
         border: 7px solid #454545;
         margin: 25px;
         display: inline-block;
       }
-
       .heading {
         font-weight: 700;
       }

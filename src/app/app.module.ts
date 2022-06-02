@@ -13,6 +13,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { EviteComponent } from './eventList/evite.component';
 import { PollsComponent } from './eventList/polls.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EviteShareComponent } from './eventList/eviteShare.component';
+import { EviteResponseComponent } from './eventList/eviteResponse.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       { path: 'loginPage', component: LoginPageComponent },
       { path: 'evitesPage', component: EviteComponent },
       { path: 'pollsPage', component: PollsComponent },
+      { path: 'eviteShare', component: EviteShareComponent },
+      { path: 'eviteResponse', component: EviteResponseComponent },
   ]),
   ],
   exports: [

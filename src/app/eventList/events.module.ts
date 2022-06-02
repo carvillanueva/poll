@@ -19,7 +19,15 @@ import { EviteShareComponent } from './eviteShare.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+  //   RouterModule.forRoot([
+  //     { path: '', component: HomeComponent },
+  //     { path: 'loginPage', component: LoginPageComponent },
+  //     { path: 'evitesPage', component: EviteComponent },
+  //     { path: 'pollsPage', component: PollsComponent },
+  //     { path: 'eviteShare', component: EviteShareComponent },
+  //     { path: 'eviteResponse', component: EviteResponseComponent },
+  // ]),
   ],
   exports: [
     EviteComponent,

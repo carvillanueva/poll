@@ -5,8 +5,8 @@ import { LoginPageComponent } from '../login-page/login-page.component';
 @Component({
   selector: 'page-header',
   template: `
-    <header class="container py-3">
-      <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <header class="py-3">
+      <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
           <span class="fs-4">{{'Arlington Family Offices'}}</span>
         </a>

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'polls-page',
-  styles: [
-    `
+  styles: [`
       .side > li {
         display: inline;
         margin-left: 20px;
