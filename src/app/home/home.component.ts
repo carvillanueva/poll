@@ -6,7 +6,7 @@ import { ApiPathService } from '../pollData.service';
 @Component({
   selector: 'home-page',
   template: `
-    <div class="container py-3">
+    <div class="container py-3 fadePage">
       <div class="bio-header p-3 pb-md-4 mx-auto text-center">
         <h1 class="display-4 fw-normal">Create an Event / Poll!</h1>
         <p class="fs-5 text-muted">
@@ -206,9 +206,9 @@ export class HomeComponent implements OnInit {
     this.apiRequest.getData('event/').subscribe((res:any) => {
       console.log(res);
     });
-    this.apiRequest.getData('customer/newCustomer/' + 'Carlos').subscribe((res:any) => {
-      console.log(res);
-    });
+    // this.apiRequest.getData('customer/newCustomer/' + 'Carlos').subscribe((res:any) => {
+    //   console.log(res);
+    // });
     // this.apiRequest.getData('customer/' + 'fa0ad996-b458-43cb-a217-83d8e476a565').subscribe((res:any) => {
     //   console.log(res);
     // });

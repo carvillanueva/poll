@@ -72,7 +72,7 @@ import { ApiPathService } from '../pollData.service';
             </div>
         </div>
         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-            <button type="button" class="btn btn-primary btn-lg" (click)="submitNewAccount()" [ngClass]="{'disabledbtn': locked}">"Register</button>
+            <button type="button" class="btn btn-primary btn-lg" (click)="submitNewAccount()" [ngClass]="{'disabledbtn': locked}">Register</button>
         </div>
         <p class="text-center text-muted mt-5 mb-0">Have already an account? <a (click)="createAcc(false)" class="fw-bold text-body" ><u>Login here</u></a></p>
     </div>

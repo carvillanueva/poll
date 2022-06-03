@@ -34,6 +34,8 @@ import { EviteResponseComponent } from './eventList/eviteResponse.component';
       { path: 'loginPage', component: LoginPageComponent },
       { path: 'evitesPage', component: EviteComponent },
       { path: 'pollsPage', component: PollsComponent },
+      { path: 'inviteComp', component: EviteComponent },
+      { path: 'invitePreview', component: EviteComponent },
       { path: 'eviteShare', component: EviteShareComponent },
       { path: 'eviteResponse', component: EviteResponseComponent },
   ]),

@@ -27,6 +27,54 @@ export class ApiPathService {
     return this.authHttp.delete(this.pollApiPath + url, data);
   }
 
+}
+
+export class Event {
+  constructor(name: string, id: string) {
+    this.type = 'event';
+    this.eventName = name;
+    this.customerId = id;
+  }
+  public id: string;
+  public type: string;
+  public customerId: string;
+  public eventName: string;
+  public eventOccasion: string;
+  public eventHost: string;
+  public eventDate: string;
+  public eventTime: string;
+  public description: string;
+  public address: string;
+  public rsvpBy: string;
 
 }
+
+export class Customer {
+  constructor(name: string) {
+    this.type = 'customer';
+    this.name = name;
+  }
+  public id: string;
+  public type: string;
+  public name: string;
+  public organization: string;
+  public emailAddress: string;
+  public password: string;
+}
+
+export class Polls {
+  constructor(name: string, id: string) {
+    this.type = 'polls';
+    this.pollName = name;
+    this.customerId = id;
+  }
+  public id: string;
+  public type: string;
+  public customerId: string;
+  public pollName: string;
+  public pollItem: string;
+  public pollDate: string;
+  public pollDescription: string;
+}
+
 

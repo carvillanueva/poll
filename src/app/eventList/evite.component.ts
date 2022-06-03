@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiPathService } from '../pollData.service';
 import { DateTime } from 'luxon';
 
-
 @Component({
   selector: 'evite-page',
   styles: [
@@ -66,8 +65,15 @@ import { DateTime } from 'luxon';
         color: #fff;
       }
 
+      /* thanks box */
+      .thanks-box {
+        border: solid 1px black;
+        background-color: lightgrey;
+        border-radius: 8px;
+      }
 
-        /* Card Preview */
+
+      /* Card Preview */
       .subtitle {
         font-style: italic;
         font-weight: 400;
@@ -78,7 +84,6 @@ import { DateTime } from 'luxon';
       .card {
         border: 7px solid #454545;
         margin: 25px;
-        display: inline-block;
       }
       .heading {
         font-weight: 700;
@@ -103,7 +108,6 @@ import { DateTime } from 'luxon';
         font-size: 7.5em;
         line-height: 1;
       }
-
       .party-address {
         padding: 2px 0;
         font-style: normal;
@@ -116,7 +120,6 @@ import { DateTime } from 'luxon';
         display: inline-block;
         margin: 0 1em;
       }
-
       .party-date {
         display: block;
         /* border-bottom: 2px solid #454545; */
@@ -140,7 +143,6 @@ import { DateTime } from 'luxon';
         font-size: 0.25em;
         top: -2em;
       }
-
       form {
         padding: 47px 12px;
       }
@@ -198,19 +200,6 @@ import { DateTime } from 'luxon';
         text-align: center;
         margin: 1.5em 0 0 0;
       }
-      .invite-switch {
-        font-size: 17px;
-        /* display: inline-block; */
-        /* width: 25%; */
-        text-align: center;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 50px;
-      }
-      .invite-switch:hover {
-        background:grey;
-        color:white;
-      }
-
       .input-container {
         background-color: rgba(0,0,0,.03);
         border-radius: 15px;
@@ -219,14 +208,16 @@ import { DateTime } from 'luxon';
     `,
   ],
   template: `
-    <div class="container col-12 text-center ">
+  <div class="container">
+
+    <div class="my-3 col-12 text-center ">
         <button class="invite-switch" (click)="switchView('true')"><span class="fad fa-envelope"></span> Invitation</button>
         <button class="invite-switch" (click)="switchView('false')"><span class="fad fa-eye"></span>  Preview</button>
-        <button class="invite-switch"><a href="/eviteShare"><i class="fad fa-share-square"></i></a> Share</button>
-        <button class="invite-switch"><a href="/eviteResponse"><i class="fad fa-user-chart"></i></a> Responses</button>
+        <button class="invite-switch"><a href="/eviteShare"><i class="fad fa-share-square"></i> Share</a></button>
+        <button class="invite-switch"><a href="/eviteResponse"><i class="fad fa-user-chart"></i> Responses</a></button>
     </div>
 
-    <div *ngIf="inviteEdit" class="container input-container form-style-2 text-center">
+    <div *ngIf="inviteEdit && !submitConfirm" class="input-container form-style-2 text-center">
       <label>
         <span>Event Name <span style="color:red;">*</span></span>
         <input type="text" class="input-field" [(ngModel)]="newEvent.eventName">
@@ -262,8 +253,17 @@ import { DateTime } from 'luxon';
       <button class="submit-evite" (click)="submitInvite()">Submit</button>
     </div>
 
-    <div class="container text-center">
-      <div *ngIf="!inviteEdit" class="card">
+    <!-- SUBMIT THANKS -->
+    <div *ngIf="submitConfirm">
+      <div class="thanks-box">
+        <p>Thanks for submitting your invitation!</p>
+        <p>Go to the 'Preview' tab to view your invitation!</p>
+        <p>Go to the 'Share' tab to send to your friends and family!</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div *ngIf="!inviteEdit && !submitConfirm" class="card">
         <section class="col-8 float-start" style="border-right: solid 2px #454545">
           <header class="heading">
             <div class="super-heading">{{this.newEvent.eventOccasion}}</div>
@@ -347,25 +347,27 @@ import { DateTime } from 'luxon';
         </section>
       </div>
     </div>
+  </div>
+
   `,
 })
 export class EviteComponent implements OnInit {
   public newEvent: newEventInfo = new newEventInfo();
   public inviteEdit: boolean = true;
+  public submitConfirm: boolean = false;
 
   constructor(
     private apiRequest: ApiPathService,
   ) {}
 
   ngOnInit( ) {
-   this.loadData();
-    console.log(this.newEvent);
-    
+    this.loadData();
   }
 
   public loadData() {
     this.apiRequest.getData('event').subscribe((res: any) => {
       console.log(res);
+      this.submitConfirm = false;
     });
   }
 
@@ -378,9 +380,12 @@ export class EviteComponent implements OnInit {
   }
 
   public submitInvite() {
+    // this.newEvent = new newEventInfo();
     this.apiRequest.postData('event', this.newEvent).subscribe((res: any) => {
       console.log(res);
+      this.submitConfirm = true;
       this.loadData();
+
     });
   }
 
@@ -399,8 +404,7 @@ export class newEventInfo {
   eventTime?: string;
   description?: string;
   address?: string;
-
-  //UI only 
   rsvpBy?: string;
+  //UI only 
 
 }
