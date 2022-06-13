@@ -190,15 +190,15 @@ import { DateTime } from 'luxon';
           </div>
           <div class="col-sm-6">
             <label class="form-label">Date <span style="color:red;">*</span></label>
-            <input type="text" class="form-control" placeholder="" [(ngModel)]="newEvent.eventDate" />
+            <input type="date" class="form-control" placeholder="" [(ngModel)]="newEvent.eventDate" />
           </div>
           <div class="col-sm-6">
             <label class="form-label">Time <span style="color:red;">*</span></label>
-            <input type="text" class="form-control" placeholder="" [(ngModel)]="newEvent.eventTime" />
+            <input type="time" class="form-control" placeholder="" [(ngModel)]="newEvent.eventTime" />
           </div>
           <div class="col-sm-6">
             <label class="form-label">RSVP By <span style="color:red;">*</span></label>
-            <input type="text" class="form-control" placeholder="" [(ngModel)]="newEvent.rsvpBy"  />
+            <input type="date" class="form-control" placeholder="" [(ngModel)]="newEvent.rsvpBy"  />
           </div>
           <div class="col-sm-6">
             <label class="form-label">Location <span style="color:red;">*</span></label>
@@ -215,7 +215,7 @@ import { DateTime } from 'luxon';
 
       <!-- SUBMIT THANKS -->
       <div *ngIf="submitConfirm">
-        <div class="thanks-box">
+        <div class="thanks-box p-5">
           <p>Thanks for submitting your invitation!</p>
           <p>Go to the 'Preview' tab to view your invitation!</p>
           <p>Go to the 'Share' tab to send to your friends and family!</p>
@@ -323,12 +323,13 @@ export class EviteComponent implements OnInit {
 
   ngOnInit( ) {
     this.loadData();
+    this.submitConfirm = false;
+
   }
 
   public loadData() {
     this.apiRequest.getData('event').subscribe((res: any) => {
       console.log(res);
-      this.submitConfirm = false;
     });
   }
 
@@ -355,17 +356,15 @@ export class EviteComponent implements OnInit {
 
 
 export class newEventInfo {
-  id?: string;
-  type = 'event';
-  customerId?: string;
-  eventName?: string;
-  eventOccasion?: string;
-  eventHost?: string;
-  eventDate?: string;
-  eventTime?: string;
-  description?: string;
-  address?: string;
-  rsvpBy?: string;
-  //UI only 
-
+  public id?: string;
+  public type: string = 'event';
+  public customerId?: string;
+  public eventName?: string;
+  public eventOccasion?: string;
+  public eventHost?: string;
+  public eventDate?: string;
+  public eventTime?: string;
+  public description?: string;
+  public address?: string;
+  public rsvpBy?: string;
 }

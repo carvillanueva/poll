@@ -65,36 +65,41 @@ import { ApiPathService } from '../pollData.service';
         </div>
       </div>
 
-      <div *ngIf="this.selectedEvent" class="row col-xs-12 col-lg-4">
+      <div *ngIf="this.selectedEvent" class="row col-xs-12 g-2 col-lg-4">
         <label>Event Details:</label>
         <div class="col-sm-6">
-          <label for="firstName" class="form-label">Event Name</label>
-          <input type="text" class="form-control" id="firstName" placeholder="John" [(ngModel)]="this.selectedEvent.eventName" required>
-        </div>
-
-        <div class="col-sm-3">
-          <label for="lastName" class="form-label"> Date</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Doe" [(ngModel)]="this.selectedEvent.eventDate" required>
-        </div>
-
-        <div class="col-sm-3">
-          <label for="lastName" class="form-label"> Time</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Doe" [(ngModel)]="this.selectedEvent.eventTime" required>
+          <label class="form-label"> Event Name</label>
+          <input type="text" class="form-control" [(ngModel)]="this.selectedEvent.eventName" >
         </div>
 
         <div class="col-sm-6">
-          <label for="firstName" class="form-label"> Location</label>
-          <input type="text" class="form-control" id="firstName" placeholder="John" [(ngModel)]="this.selectedEvent.address" required>
+          <label class="form-label"> Occasion</label>
+          <input type="text" class="form-control" [(ngModel)]="this.selectedEvent.eventOccasion" >
         </div>
 
         <div class="col-sm-6">
-          <label for="firstName" class="form-label">RSVP By:</label>
-          <input type="text" class="form-control" id="firstName" placeholder="John" [(ngModel)]="this.selectedEvent.rsvpBy" required>
+          <label class="form-label"> Date</label>
+          <input type="date" class="form-control" [(ngModel)]="this.selectedEvent.eventDate" >
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label"> Time</label>
+          <input type="time" class="form-control" [(ngModel)]="this.selectedEvent.eventTime" >
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label"> Location</label>
+          <input type="text" class="form-control" [(ngModel)]="this.selectedEvent.address" >
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label">RSVP By:</label>
+          <input type="date" class="form-control" [(ngModel)]="this.selectedEvent.rsvpBy" >
         </div>
 
         <div class="col-12">
-          <label for="email" class="form-label">Event Description</label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com" [(ngModel)]="this.selectedEvent.description" required>
+          <label class="form-label">Event Description</label>
+          <input type="email" class="form-control" [(ngModel)]="this.selectedEvent.description" >
         </div>
       </div>
 
