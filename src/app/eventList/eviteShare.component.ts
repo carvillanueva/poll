@@ -26,7 +26,7 @@ import { ApiPathService } from '../pollData.service';
       <div class="col-xs-12 col-lg-4">
         <label>Select Invite to Send...</label>
         <div class="event">
-          <table class="table table-borderless table-hover">
+          <table class="table table-condensed table-borderless table-hover">
             <tr>
               <td>Event</td>
               <td>Date</td>
@@ -34,6 +34,7 @@ import { ApiPathService } from '../pollData.service';
             <tr *ngFor="let e of eventList" style="cursor: pointer" (click)="selectEvent(e)" [ngClass]="{'event-selected': e.selectedEvent}">
               <td>{{e.eventName ? e.eventName : 'NO NAME'}}</td>
               <td>{{e.eventDate ? (e.eventDate | date) : 'NO DATE'}}</td>
+              <td (click)="deleteEvent();"><i class="fa-duotone fa-trash-can"></i></td>
             </tr>
           </table>
         </div>
@@ -42,15 +43,25 @@ import { ApiPathService } from '../pollData.service';
       <div class="col-xs-12 col-lg-4">
         <label class="col-md-4 d-inline-block">Send To:</label>
         <div class="col-md-8 d-inline-flex float-end justify-content-evenly">
-          <span>Add User <i class="fad fa-user"></i></span>
+          <span (click)="this.addUser = true">Add User <i class="fad fa-user"></i></span>
           <span (click)="this.addNew = true">Create New <i class="fad fa-plus"></i></span>
         </div>
         <div *ngIf="addNew" class="mb-3">
           <input type="text" class="afo-input" style="width:90%" [(ngModel)]="this.newUserEmail.email" placeholder="Add New User Email">
           <span class="iconclickinsert" (click)="addNewUser()"><i class="fad fa-user-check"></i></span>
+        </div>  
+        <div *ngIf="addUser" class="mb-3">
+          <select class="afo-input" style="width:90%">
+            <option value="" disabled selected>Select from User Emails</option>
+            <option value="honda">Honda</option>
+            <option value="ford">Ford</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select>
+          <span class="iconclickinsert" (click)="addNewUser()"><i class="fad fa-user-check"></i></span>
         </div>
-        <div style="border: solid 1px grey; background-color: lightgrey">
-          <p>people</p>
+        <div>
+          <label>People:</label>
         </div>
       </div>
 
@@ -100,6 +111,7 @@ import { ApiPathService } from '../pollData.service';
 export class EviteShareComponent implements OnInit {
   public eventList: any[] = [];
   public addNew: boolean = false;
+  public addUser: boolean = false;
   public selectedEvent: any;
   public newUserEmail: any = {};
 
@@ -132,6 +144,11 @@ export class EviteShareComponent implements OnInit {
       
     });
 
+  }
+
+  public deleteEvent() {
+    console.log('delete');
+    
   }
 
 
