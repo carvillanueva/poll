@@ -17,7 +17,7 @@ import { ApiPathService } from '../pollData.service';
     <div class="modal-header p-5 pb-4 border-bottom-0">
         <h2 *ngIf="!newAccount" class="fw-bold mb-0">Sign in</h2>
         <h2 *ngIf="newAccount"class="fw-bold mb-0">Sign up</h2>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross Click')"><span aria-hidden="true">&times;</span></button>
+        <button class="p-1 fs-4 border-0 bg-white" (click)="activeModal.dismiss('Cross Click')"><span >&times;</span></button>
     </div>
     <div *ngIf="!newAccount" class="modal-body p-5 pt-0">
         <div class="mb-3">
