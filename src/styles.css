@@ -125,3 +125,14 @@ color: #ffffff;
 background-color: #4d6b8e;
 border-color: #425e80;
 }
+.disabledbtnbright {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  z-index: 98;
+  pointer-events: none;
+}
+.iconclickdelete:hover {
+  color: red;
+  text-shadow: 1px 1px 1px #ccc;
+  cursor: pointer;
+}

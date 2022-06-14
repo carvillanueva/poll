@@ -11,10 +11,11 @@ import { HeaderComponent } from './home/header.component';
 import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { EviteComponent } from './eventList/evite.component';
-import { PollsComponent } from './eventList/polls.component';
+import { PollsComponent } from './pollList/polls.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EviteShareComponent } from './eventList/eviteShare.component';
 import { EviteResponseComponent } from './eventList/eviteResponse.component';
+import { PollsPageModule } from './pollList/polls.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EviteResponseComponent } from './eventList/eviteResponse.component';
     FormsModule,
     LoginPageModule,
     EventsPageModule,
+    PollsPageModule,
     HttpClientModule,
     NgbModule,
     RouterModule.forRoot([

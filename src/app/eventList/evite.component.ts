@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPathService } from '../pollData.service';
+import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
 
 @Component({
   selector: 'evite-page',
-  styles: [
-  `
+  styles: [`
     .submit-evite {
       border: none;
       padding: 8px 15px 8px 15px;
@@ -22,14 +22,18 @@ import { DateTime } from 'luxon';
       background: #ea7b00;
       color: #fff;
     }
-
+    .afo-nav-link-active {
+      color: white;
+      text-decoration: underline;
+    }
     /* thanks box */
     .thanks-box {
-      border: solid 1px black;
-      background-color: lightgrey;
+      background-color: rgba(0,0,0,.02);
       border-radius: 8px;
+      -webkit-box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1); 
+      box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
+      max-width:600px;
     }
-
 
     /* Card Preview */
     .subtitle {
@@ -167,11 +171,21 @@ import { DateTime } from 'luxon';
   `],
   template: `
     <div class="container">
-      <div class="my-3 col-12 text-center">
-          <button class="invite-switch" (click)="switchView('true')"><span class="fad fa-envelope"></span> Invitation</button>
-          <button class="invite-switch" (click)="switchView('false')"><span class="fad fa-eye"></span>  Preview</button>
-          <button class="invite-switch"><a href="/eviteShare"><i class="fad fa-share-square"></i> Share</a></button>
-          <button class="invite-switch"><a href="/eviteResponse"><i class="fad fa-user-chart"></i> Responses</a></button>
+      <div class="pt-3 text-center">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a (click)="switchView('true')" class="nav-link link-dark"><span class="fad fa-envelope"></span> Invitation</a>
+          </li>
+          <li>
+            <a (click)="switchView('false')" class="nav-link link-dark"><span class="fad fa-eye"></span> Preview</a>
+          </li>
+          <li>
+            <a href="/eviteShare" class="nav-link link-dark"><i class="fad fa-share-square"></i> Share</a>
+          </li>
+          <li>
+            <a href="/eviteResponse" class="nav-link link-dark"><i class="fad fa-user-chart"></i> Responses</a>
+          </li>
+        </ul>
       </div>
 
       <div *ngIf="inviteEdit && !submitConfirm" class="row col-xs-12 g-3 input-container mx-auto p-3 my-3">
@@ -208,14 +222,14 @@ import { DateTime } from 'luxon';
             <label class="form-label">Message</label>
             <textarea type="text" class="form-control" rows="4" placeholder="" [(ngModel)]="newEvent.description"></textarea>
           </div>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-            <button (click)="submitInvite()"class=" submit-evitebtn btn-primary btn-lg px-4 me-md-2 fw-bold">Create <i class="fa-solid fa-paper-plane"></i></button>
+          <div class="">
+            <button (click)="submitInvite()"class="submit-evitebtn btn-primary btn-md p-2 fw-bold" [ngClass]="{'disabledbtn': !newEvent.eventName}">Create <i class="fa-solid fa-paper-plane"></i></button>
           </div>
         </div>
 
       <!-- SUBMIT THANKS -->
       <div *ngIf="submitConfirm">
-        <div class="thanks-box p-5">
+        <div class="thanks-box p-3 mx-auto text-center fs-5 mt-3">
           <p>Thanks for submitting your invitation!</p>
           <p>Go to the 'Preview' tab to view your invitation!</p>
           <p>Go to the 'Share' tab to send to your friends and family!</p>
@@ -223,33 +237,37 @@ import { DateTime } from 'luxon';
       </div>
 
       <div class="text-center">
+        <div>
+          <img src="../../assets/images/AFO-Primary Stack_Slate.png" height="175px" width="275px" alt="Arlington Logo"/>
+        </div>
         <div *ngIf="!inviteEdit && !submitConfirm" class="card">
+
           <section class="col-8 float-start" style="border-right: solid 2px #454545">
             <header class="heading">
-              <div class="super-heading">{{this.newEvent.eventOccasion}}</div>
-              <h1 class="title">{{this.newEvent.eventName}}</h1>
+              <div class="super-heading">{{this.recentEvite.eventOccasion}}</div>
+              <h1 class="title">{{this.recentEvite.eventName}}</h1>
             </header>
 
             <address class="party-address">
               <p>
-                <i class="fas fa-map-marker-alt"></i> {{this.newEvent.address}}
+                <i class="fas fa-map-marker-alt"></i> {{this.recentEvite.address}}
               </p>
               <!-- <p>
                 <i class="fad fa-phone"></i> (205) 671-8235
               </p> -->
               <p>
-                <i>RSVP BY: </i> {{this.newEvent.rsvpBy | date}}
+                <i>RSVP BY: </i> {{this.recentEvite.rsvpBy | date}}
               </p>
               <p>
-                <i class="fad fa-clock"></i> {{this.newEvent.eventTime}}
+                <i class="fad fa-clock"></i> {{this.recentEvite.eventTime}}
               </p>
             </address>
             <time class="party-date">
-              <div class="party-month">{{this.newEvent.eventDate | date}}</div>
+              <div class="party-month">{{this.recentEvite.eventDate | date}}</div>
               <!-- <div class="party-month">august</div> -->
             </time>
             <div class="col-4">
-              {{this.newEvent.description}}
+              {{this.recentEvite.description}}
             </div>
 
           </section>
@@ -315,21 +333,27 @@ import { DateTime } from 'luxon';
 export class EviteComponent implements OnInit {
   public newEvent: newEventInfo = new newEventInfo();
   public inviteEdit: boolean = true;
+  public recentEvite: any;
   public submitConfirm: boolean = false;
 
   constructor(
     private apiRequest: ApiPathService,
+    private router: Router
   ) {}
 
   ngOnInit( ) {
     this.loadData();
     this.submitConfirm = false;
-
   }
 
   public loadData() {
     this.apiRequest.getData('event').subscribe((res: any) => {
       console.log(res);
+
+      let last = res.length - 1;
+      this.recentEvite = res[last]; 
+      console.log(this.recentEvite);
+          
     });
   }
 
@@ -347,7 +371,6 @@ export class EviteComponent implements OnInit {
       console.log(res);
       this.submitConfirm = true;
       this.loadData();
-
     });
   }
 
