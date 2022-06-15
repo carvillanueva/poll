@@ -48,7 +48,7 @@ import { ApiPathService } from '../pollData.service';
               <tr *ngFor="let e of eventList" style="cursor: pointer" (click)="selectEvent(e)" [ngClass]="{'event-selected': e?.id === selectedEvent?.id}">
                 <td>{{e.eventName ? e.eventName : 'NO NAME'}}</td>
                 <td>{{e.eventDate ? (e.eventDate | date) : 'NO DATE'}}</td>
-                <td (click)="deleteEvent();"><i class="fa-duotone fa-trash-can iconclickdelete"></i></td>
+                <td (click)="deleteEvent(e);"><i class="fa-duotone fa-trash-can iconclickdelete"></i></td>
               </tr>
             </tbody>
           </table>
@@ -152,7 +152,6 @@ export class EviteShareComponent implements OnInit {
 
   public selectEvent(event: any) {
     this.selectedEvent = event;
-    console.log(this.selectedEvent);
   }
 
   public addNewUser() {
@@ -172,8 +171,14 @@ export class EviteShareComponent implements OnInit {
     console.log('email sent');
   }
 
-  public deleteEvent() {
+  public deleteEvent(event:any) {
     console.log('delete');
+    console.log(event);
+    
+    this.apiRequest.deleteData('event/' + event.id).subscribe((res:any) => {
+      console.log(res);
+      
+    });
   }
 
 

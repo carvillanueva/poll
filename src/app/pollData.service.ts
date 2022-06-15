@@ -23,8 +23,9 @@ export class ApiPathService {
     return this.authHttp.put(this.pollApiPath + url, data);
   }
 
-  public deleteData(url:string, data: any) {
-    return this.authHttp.delete(this.pollApiPath + url, data);
+  public deleteData(url:string, data?: any) {
+    return this.authHttp.delete(this.pollApiPath + url);
+    // this.cloudApiPath + url
   }
 
 }
@@ -64,18 +65,22 @@ export class Customer {
 
 export class Polls {
   constructor() {
-    // constructor(name: string, id: string) {
     this.type = 'poll';
-    // this.pollName = name;
-    // this.customerId = id;
+    this.data = [];
   }
   public id: string;
   public type: string;
   public customerId: string;
+  public data: PollQuestions[];
   public pollName: string;
-  public pollItem: string;
-  public pollDate: string;
-  public pollDescription: string;
+  // public pollItem: string;
+  // public pollDate: string;
+  // public pollDescription: string;
+}
+
+export class PollQuestions {
+  public question?: string;
+  public answerType?: string;
 }
 
 

@@ -230,6 +230,9 @@ import { DateTime } from 'luxon';
       <!-- SUBMIT THANKS -->
       <div *ngIf="submitConfirm">
         <div class="thanks-box p-3 mx-auto text-center fs-5 mt-3">
+          <div>
+            <img src="../../assets/images/AFO-Primary Stack_Slate.png" height="175px" width="275px" alt="Arlington Logo"/>
+          </div>
           <p>Thanks for submitting your invitation!</p>
           <p>Go to the 'Preview' tab to view your invitation!</p>
           <p>Go to the 'Share' tab to send to your friends and family!</p>
@@ -237,11 +240,7 @@ import { DateTime } from 'luxon';
       </div>
 
       <div class="text-center">
-        <div>
-          <img src="../../assets/images/AFO-Primary Stack_Slate.png" height="175px" width="275px" alt="Arlington Logo"/>
-        </div>
         <div *ngIf="!inviteEdit && !submitConfirm" class="card">
-
           <section class="col-8 float-start" style="border-right: solid 2px #454545">
             <header class="heading">
               <div class="super-heading">{{this.recentEvite.eventOccasion}}</div>
