@@ -59,6 +59,10 @@ export class HomeComponent implements OnInit {
     this.apiRequest.getData('event/').subscribe((res:any) => {
       console.log(res);
     });
+    // this.apiRequest.getData('poll/').subscribe((res:any) => {
+    //   console.log(res);
+    // });
+
     // this.apiRequest.getData('customer/newCustomer/' + 'Carlos').subscribe((res:any) => {
     //   console.log(res);
     // });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiPathService } from '../pollData.service';
+import { ApiPathService, Polls } from '../pollData.service';
 
 @Component({
   selector: 'polls-page',
@@ -142,15 +142,17 @@ import { ApiPathService } from '../pollData.service';
 })
 export class PollsComponent implements OnInit {
   public view: string = '';
+  public newPoll: Polls = new Polls();
 
   constructor(
     private apiRequest: ApiPathService,
   ) { }
 
   ngOnInit() {
-    // this.apiRequest.getData('poll').subscribe((res:any) => {
-    //   console.log(res)
-    // });
+    this.apiRequest.getData('poll/').subscribe((res:any) => {
+      console.log(res)
+    });
+    
   }
 
 

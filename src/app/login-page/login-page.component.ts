@@ -49,7 +49,7 @@ import { ApiPathService } from '../pollData.service';
         <div class="d-flex  align-items-center mb-4">
             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
             <div class="form-outline flex-fill mb-0">
-                <input type="email" class="form-control" [(ngModel)]="newUserInfo.email" placeholder="Your Email"/>
+                <input type="email" class="form-control" [(ngModel)]="newUserInfo.emailAddress" placeholder="Your Email"/>
             </div>
         </div>
         <div class="d-flex  align-items-center mb-4">
@@ -130,7 +130,7 @@ export class LoginPageComponent implements OnInit {
 export class newUserInfo {
     id?: string;
     name?: string;
-    email?: string;
+    emailAddress?: string;
     organization?: string;
     password?: string;
     type = 'customer';

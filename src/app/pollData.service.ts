@@ -63,10 +63,11 @@ export class Customer {
 }
 
 export class Polls {
-  constructor(name: string, id: string) {
-    this.type = 'polls';
-    this.pollName = name;
-    this.customerId = id;
+  constructor() {
+    // constructor(name: string, id: string) {
+    this.type = 'poll';
+    // this.pollName = name;
+    // this.customerId = id;
   }
   public id: string;
   public type: string;
