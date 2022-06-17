@@ -14,19 +14,19 @@ import { ApiPathService } from '../pollData.service';
         <div class="container-fluid py-5">
           <h1 class="display-5 fw-bold">arlington family offices</h1>
           <p class="col-md-8 fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas sed enim ut sem viverra aliquet. Dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu. Euismod quis viverra nibh cras pulvinar mattis nunc sed blandit.</p>
-          <button class="btn btn-primary btn-lg" type="button">Get Started Today!</button>
+          <button class="btn btn-primary btn-lg" (click)="loginModal()">Get Started Today!</button>
         </div>
       </div>
 
       <div class="row align-items-md-stretch">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
           <div class="h-100 p-5 text-white bg-secondary rounded-3">
             <h2>Create an Invitation</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas sed enim ut sem viverra aliquet. Dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu. Euismod quis viverra nibh cras pulvinar mattis nunc sed blandit.</p>
             <button class="btn btn-outline-light" routerLink="/evitesPage" >Create <i class="fad fa-calendar-circle-user"></i></button>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
           <div class="h-100 p-5 bg-light border rounded-3">
             <h2>Create a Poll</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas sed enim ut sem viverra aliquet. Dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu. Euismod quis viverra nibh cras pulvinar mattis nunc sed blandit.</p>

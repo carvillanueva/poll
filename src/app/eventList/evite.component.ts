@@ -35,7 +35,7 @@ import { DateTime } from 'luxon';
       max-width:600px;
     }
 
-    /* Card Preview */
+    /* Card Preview
     .subtitle {
       font-style: italic;
       font-weight: 400;
@@ -84,7 +84,7 @@ import { DateTime } from 'luxon';
     }
     .party-date {
       display: block;
-      /* border-bottom: 2px solid #454545; */
+     border-bottom: 2px solid #454545; 
       text-align: center;
       margin: 0 0 0.5em;
     }
@@ -142,7 +142,7 @@ import { DateTime } from 'luxon';
     }
     input[type='text']:disabled {
       color: #898989;
-    } */
+    } 
     .send-card-button {
       display: block;
       margin: 1.5em auto 0;
@@ -161,12 +161,58 @@ import { DateTime } from 'luxon';
     .thank-you {
       text-align: center;
       margin: 1.5em 0 0 0;
-    }
+    } */
     .input-container {
       background-color: rgba(0,0,0,.02);
       border-radius: 15px;
       max-width: 1000px;
     }
+    /* NOTE SECTION  */
+    .note {
+      padding-top: 50px;
+      position: relative;
+    }
+    .note .container {
+      /* background: url("https://static1.squarespace.com/static/5b63d343b105984b697b5c51/t/5cac6fe408522927f4aad8b7/1554804722180/pattern_V5.jpg") repeat-x center center / auto 100% ; */
+      background-color: #2e5077;
+      max-width: 1200px;
+      margin: 0 auto;
+      -webkit-box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.15);
+      box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.15);
+      padding: 120px 122px 90px;
+      position: relative;
+      z-index: 5;
+      font-size: 22px;
+    }
+    .note .container:after {
+      content:"";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: white;
+      width: calc(100% - 40px);
+      height: calc(100% - 40px);
+      z-index: -1 ;
+    }
+    .note .container .texts p {
+      max-width: 100%;
+      font-size: 21px;
+      line-height: 1.8em;
+      padding-bottom: 15px;
+    }
+    .note .container span.sub-text {
+      font-size: 16px !important;
+      width: 100%;
+      display: inline-block;
+    }
+    .note .container .texts .sub-text {
+      font-size: 18px;
+      line-height: 1.3em;
+      display: block;
+      margin-bottom: 1em;
+    }
+    /* NOTE SECTION END */
 
   `],
   template: `
@@ -240,8 +286,19 @@ import { DateTime } from 'luxon';
       </div>
 
       <div class="text-center">
-        <div *ngIf="!inviteEdit && !submitConfirm" class="card">
-          <section class="col-8 float-start" style="border-right: solid 2px #454545">
+        <!-- <div *ngIf="!inviteEdit && !submitConfirm" class="card"> -->
+        <div class="note">
+          <div class="container">
+            <div class="texts">
+              <p>Some of you may have wondered why we haven’t included the exact location of our wedding venue onto our invitation card. Well we have a good reason for that and we promise you it’s a good one. We have arranged transport from Deià & Sòller to the events for all of our guests, so for now sit back, relax - we’ve got it all sorted!</p>
+              <span class="sub-text"><span class="pink">*</span>Please note that our transport schedule will be updated and sent out nearer to the event*</span>
+              <span class="sub-text"><span class="pink">**</span>For those who are coming with their own car, please kindly <a href="mailto:pommaham@gmail.com" class="pink">email</a> us!</span>
+              <a class="in-link" href="/itinerary-2">SEE ITINENARY</a>
+              <a class="in-link" href="/rsvp">RSVP</a>
+            </div>
+          </div>
+        </div>
+          <!-- <section class="col-8 float-start" style="border-right: solid 2px #454545">
             <header class="heading">
               <div class="super-heading">{{this.recentEvite.eventOccasion}}</div>
               <h1 class="title">{{this.recentEvite.eventName}}</h1>
@@ -251,9 +308,6 @@ import { DateTime } from 'luxon';
               <p>
                 <i class="fas fa-map-marker-alt"></i> {{this.recentEvite.address}}
               </p>
-              <!-- <p>
-                <i class="fad fa-phone"></i> (205) 671-8235
-              </p> -->
               <p>
                 <i>RSVP BY: </i> {{this.recentEvite.rsvpBy | date}}
               </p>
@@ -263,7 +317,6 @@ import { DateTime } from 'luxon';
             </address>
             <time class="party-date">
               <div class="party-month">{{this.recentEvite.eventDate | date}}</div>
-              <!-- <div class="party-month">august</div> -->
             </time>
             <div class="col-4">
               {{this.recentEvite.description}}
@@ -322,8 +375,8 @@ import { DateTime } from 'luxon';
               <button class="send-card-button" id="theButton">Alrighty!</button>
               <div id="thankyou" class="thank-you"></div>
             </form>
-          </section>
-        </div>
+          </section> -->
+        <!-- </div> -->
       </div>
     </div>
 
@@ -347,12 +400,9 @@ export class EviteComponent implements OnInit {
 
   public loadData() {
     this.apiRequest.getData('event').subscribe((res: any) => {
-      console.log(res);
-
       let last = res.length - 1;
       this.recentEvite = res[last]; 
       console.log(this.recentEvite);
-          
     });
   }
 
