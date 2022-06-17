@@ -26,6 +26,11 @@ import { DateTime } from 'luxon';
       color: white;
       text-decoration: underline;
     }
+    .input-container {
+      background-color: rgba(0,0,0,.02);
+      border-radius: 15px;
+      max-width: 1000px;
+    }
     /* thanks box */
     .thanks-box {
       background-color: rgba(0,0,0,.02);
@@ -33,139 +38,6 @@ import { DateTime } from 'luxon';
       -webkit-box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1); 
       box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
       max-width:600px;
-    }
-
-    /* Card Preview
-    .subtitle {
-      font-style: italic;
-      font-weight: 400;
-      font-size: 0.875em;
-      color: #898989;
-      margin: 0 0 0.25em;
-    }
-    .card {
-      border: 7px solid #454545;
-      margin: 25px;
-    }
-    .heading {
-      font-weight: 700;
-    }
-    .super-heading,
-    .title {
-      display: inline-block;
-      color: #f5f5f5;
-      background: #454545;
-      text-transform: uppercase;
-    }
-    .super-heading {
-      font-size: 1.75em;
-      font-style: italic;
-      padding: 0 0.5em 2px 2px;
-      margin: 20px 0 2px;
-      line-height: 1.25;
-    }
-    .title {
-      margin: 0 0 50px;
-      padding-right: 2px;
-      font-size: 7.5em;
-      line-height: 1;
-    }
-    .party-address {
-      padding: 2px 0;
-      font-style: normal;
-      text-align: center;
-      border-width: 2px 0;
-      border-style: solid;
-      border-color: #454545;
-    }
-    .party-address > p {
-      display: inline-block;
-      margin: 0 1em;
-    }
-    .party-date {
-      display: block;
-     border-bottom: 2px solid #454545; 
-      text-align: center;
-      margin: 0 0 0.5em;
-    }
-    .party-month,
-    .party-day {
-      display: inline-block;
-      vertical-align: baseline;
-      font-weight: 700;
-    }
-    .party-month {
-      font-size: 6em;
-      margin-left: 0.25em;
-    }
-    .party-day {
-      font-size: 9em;
-    }
-    .party-day sup {
-      font-size: 0.25em;
-      top: -2em;
-    }
-    form {
-      padding: 47px 12px;
-    }
-    input[type='radio'] {
-      margin-right: 0.25em;
-    }
-    .radio-bringing--yes:checked ~ .is_bringing {
-      display: block;
-    }
-    .radio-coming--yes:checked ~ .bringing {
-      display: block;
-    }
-    .label-coming--yes,
-    .label-bringing--yes {
-      margin-right: 1.5em;
-    }
-    .bringing {
-      display: none;
-      border: none;
-      padding: 0;
-    }
-    .is_bringing {
-      display: none;
-      padding-left: 1.5em;
-      border: none;
-    }
-    /* input[type='text'] {
-      width: 100%;
-      margin: 0 0 0.5em;
-      -webkit-appearance: none;
-      border-radius: 0;
-      border: 0.0675em solid #898989;
-      padding: 0.25em 0.375em;
-      color: #454545;
-    }
-    input[type='text']:disabled {
-      color: #898989;
-    } 
-    .send-card-button {
-      display: block;
-      margin: 1.5em auto 0;
-      border: none;
-      background-color: #454545;
-      padding: 0.25em 0.5em 0.5em;
-      color: #f5f5f5;
-      font-size: 1.5em;
-    }
-    .send-card-button:hover {
-      color: tomato;
-    }
-    .send-card-button.sent {
-      pointer-events: none;
-    }
-    .thank-you {
-      text-align: center;
-      margin: 1.5em 0 0 0;
-    } */
-    .input-container {
-      background-color: rgba(0,0,0,.02);
-      border-radius: 15px;
-      max-width: 1000px;
     }
     /* NOTE SECTION  */
     .note {
@@ -177,10 +49,9 @@ import { DateTime } from 'luxon';
       background-color: #2e5077;
       max-width: 1200px;
       margin: 0 auto;
-      -webkit-box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.15);
-      box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.15);
-      padding: 120px 122px 90px;
+      border-radius: 8px;
+      box-shadow: 5px 5px 10px 3px rgb(0 0 0 / 15%);
+      padding: 55px 40px;
       position: relative;
       z-index: 5;
       font-size: 22px;
@@ -199,7 +70,6 @@ import { DateTime } from 'luxon';
       max-width: 100%;
       font-size: 21px;
       line-height: 1.8em;
-      padding-bottom: 15px;
     }
     .note .container span.sub-text {
       font-size: 16px !important;
@@ -211,6 +81,11 @@ import { DateTime } from 'luxon';
       line-height: 1.3em;
       display: block;
       margin-bottom: 1em;
+    }
+    .info-line {
+      font-size: 18px;
+      margin-left: 15px;
+      margin-right: 15px;
     }
     /* NOTE SECTION END */
 
@@ -285,98 +160,25 @@ import { DateTime } from 'luxon';
         </div>
       </div>
 
-      <div class="text-center">
-        <!-- <div *ngIf="!inviteEdit && !submitConfirm" class="card"> -->
-        <div class="note">
-          <div class="container">
-            <div class="texts">
-              <p>Some of you may have wondered why we haven’t included the exact location of our wedding venue onto our invitation card. Well we have a good reason for that and we promise you it’s a good one. We have arranged transport from Deià & Sòller to the events for all of our guests, so for now sit back, relax - we’ve got it all sorted!</p>
-              <span class="sub-text"><span class="pink">*</span>Please note that our transport schedule will be updated and sent out nearer to the event*</span>
-              <span class="sub-text"><span class="pink">**</span>For those who are coming with their own car, please kindly <a href="mailto:pommaham@gmail.com" class="pink">email</a> us!</span>
-              <a class="in-link" href="/itinerary-2">SEE ITINENARY</a>
-              <a class="in-link" href="/rsvp">RSVP</a>
+      <div *ngIf="!inviteEdit && !submitConfirm" class="text-center note">
+        <div class="container">
+          <div class="texts">
+            <div>
+              <img src="../../assets/images/AFO-Primary Stack_Slate.png" height="175px" width="275px" alt="Arlington Logo"/>
             </div>
+            <h2>{{recentEvite?.eventName}}</h2>
+            <p>{{recentEvite?.description}}</p>
+            <div class="bg-light rounded mx-auto" style="width: fit-content">
+              <span class="info-line"><i class="fas fa-map-marker-alt"></i> {{recentEvite?.address}}</span>
+              <span class="info-line"><i class="fad fa-clock"></i> {{recentEvite?.eventDate | date}} @ {{recentEvite?.eventTime}}</span>
+              <span class="info-line"><i>RSVP BY: </i> {{recentEvite?.rsvpBy | date}}</span>
+            </div>
+            <span class="sub-text my-4"><span class="pink">*</span>Please respond to the invitation by selected 'Accept' or 'Decline'*</span>
+            <span class="sub-text my-4"><span class="pink">*</span>If you have any questions feel free to reach out!</span>
+            <button class="btn btn-outline-success btn-md mx-3">Accept</button>
+            <button class="btn btn-outline-danger btn-md mx-3">Decline</button>
           </div>
         </div>
-          <!-- <section class="col-8 float-start" style="border-right: solid 2px #454545">
-            <header class="heading">
-              <div class="super-heading">{{this.recentEvite.eventOccasion}}</div>
-              <h1 class="title">{{this.recentEvite.eventName}}</h1>
-            </header>
-
-            <address class="party-address">
-              <p>
-                <i class="fas fa-map-marker-alt"></i> {{this.recentEvite.address}}
-              </p>
-              <p>
-                <i>RSVP BY: </i> {{this.recentEvite.rsvpBy | date}}
-              </p>
-              <p>
-                <i class="fad fa-clock"></i> {{this.recentEvite.eventTime}}
-              </p>
-            </address>
-            <time class="party-date">
-              <div class="party-month">{{this.recentEvite.eventDate | date}}</div>
-            </time>
-            <div class="col-4">
-              {{this.recentEvite.description}}
-            </div>
-
-          </section>
-
-          <section class="col-4 float-end" >
-            <form id="theForm">
-              <h2>Are you coming?</h2>
-              <input
-                type="radio"
-                name="coming"
-                value="yes"
-                id="comingYes"
-                class="radio-coming--yes"
-                checked/>
-              <label for="comingYes" class="label-coming--yes">Yes, of course!</label>
-              <input
-                type="radio"
-                name="coming"
-                value="no"
-                id="comingNo"
-                class="radio-coming--no"/>
-              <label for="comingNo" class="label-coming--no">No, I'm sorry...</label>
-
-              <fieldset class="bringing">
-                <h3>Do you bring other people?</h3>
-                <input
-                  type="radio"
-                  name="bringing"
-                  id="bringingYes"
-                  value="yes"
-                  class="radio-bringing--yes"
-                  checked/>
-                <label for="bringingYes" class="label-bringing--yes">Yes!</label>
-                <div class="is_bringing" id="bringing">
-                  <h4>Oh, cool! Who else is coming??</h4>
-                  <p class="subtitle">Bring as many as you like</p>
-                  <input
-                    type="text"
-                    name="persons"
-                    id="persons"
-                    class="afo-input"
-                    placeholder="Arlington Employee, Spouce, etc." />
-                </div>
-                <input
-                  type="radio"
-                  name="bringing"
-                  value="no"
-                  id="bringingNo"
-                  class="radio-bringing--no"/>
-                <label for="bringingNo" class="label-bringing--no">No, I'm the lone ranger</label>
-              </fieldset>
-
-              <button class="send-card-button" id="theButton">Alrighty!</button>
-              <div id="thankyou" class="thank-you"></div>
-            </form>
-          </section> -->
-        <!-- </div> -->
       </div>
     </div>
 
